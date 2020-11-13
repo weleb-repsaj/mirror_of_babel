@@ -1,19 +1,42 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>serotonin</title>
-	<link href="https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap" rel="stylesheet">
-	<link href="styles.css" rel="stylesheet" type="text/css">
+<meta charset="utf-8">
+<title>Display Webcam Stream</title>
+ 
+<style>
+#container {
+	margin: 0px auto;
+	width: 500px;
+	height: 375px;
+	border: 10px #333 solid;
+}
+#videoElement {
+	width: 500px;
+	height: 375px;
+	background-color: #666;
+}
+</style>
 </head>
+ 
 <body>
-	<div id="player">
-    	<audio autoplay hidden loop>
-     		<source src="sounds/symphony.mp3" type="audio/mpeg">
-                If you're reading this, please try opening with SAFARI. 
-    	</audio>
-	</div>
-	<div id="wrapper"><video autoplay loop muted playsinline src="media/ear_vid.mp4"></video></div>
-	<div id="texting"><h1>EVERY  FAR  VOICE   SOUNDS  THE  SAME  NOW</h1></div>
+<div id="container">
+	<video autoplay="true" id="videoElement">
+	
+	</video>
+</div>
+<script>
+var video = document.querySelector("#videoElement");
+
+if (navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function (stream) {
+      video.srcObject = stream;
+    })
+    .catch(function (err0r) {
+      console.log("Something went wrong!");
+    });
+}
+</script>
 </body>
 </html>
